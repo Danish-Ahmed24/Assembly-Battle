@@ -1,0 +1,35 @@
+INCLUDE Irvine32.inc
+
+.data
+    byteSize      DWORD 1
+    intSize       DWORD 4
+    doubleSize    DWORD 8
+    arraySize     DWORD 5
+    charSize      DWORD 10
+    totalMemory   DWORD ?
+    msg           BYTE "Total memory allocated(bytes) = ", 0
+
+.code
+main PROC
+    mov eax, arraySize
+    imul eax, intSize
+
+    mov ebx, charSize
+    imul ebx, byteSize
+
+    add eax, ebx
+    add eax, doubleSize
+
+    mov totalMemory, eax
+
+    mov edx, OFFSET msg
+    call WriteString
+
+    mov eax, totalMemory
+    call WriteInt
+
+    call Crlf
+
+    exit
+main ENDP
+END main

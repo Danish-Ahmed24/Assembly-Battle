@@ -1,0 +1,25 @@
+INCLUDE Irvine32.inc
+
+.data
+    syntaxError       DWORD 15       ; 15d
+    semanticError     DWORD 2Ah      ; 42d
+    runtimeWarning    DWORD 1011b    ; 11d
+    optimizationNote  DWORD 12o      ; 10d
+    totalErrorCode    DWORD ?
+
+.code
+main PROC
+    mov eax, syntaxError
+    add eax, semanticError
+    add eax, runtimeWarning
+    add eax, optimizationNote
+
+    mov totalErrorCode, eax
+
+    mov eax, totalErrorCode
+    call WriteInt
+    call Crlf
+
+    exit
+main ENDP
+END main
